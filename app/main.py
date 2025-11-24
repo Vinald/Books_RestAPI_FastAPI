@@ -1,22 +1,14 @@
 from fastapi import FastAPI
-from pydantic import BaseModel
+from app.api.v1.routes import book
 
-app = FastAPI()
-
-class BookCreateModel(BaseModel):
-    title: str
-    author: str
+version = "v1"
 
 
-@app.get("/books")
-async def get_books():
-    return {"books": ["Book 1", "Book 2", "Book 3"]}
-
-@app.get("/books/{book_id}")
-async def get_book(book_id: int):
-    return {"book_id": book_id, "title": f"Book {book_id}", "author": "Author Name"}
+app = FastAPI(
+    title="Book Management API",
+    description="API for managing a collection of books.",
+    version="1.0.0"
+)
 
 
-@app.post("/book")
-async def create_book(book: BookCreateModel):
-    return {"message": f"Book '{book.title}' by {book.author} created successfully!"}
+app.include_router(book.book_router, prefix=f"/api/{version}")
