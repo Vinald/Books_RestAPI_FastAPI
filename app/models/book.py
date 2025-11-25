@@ -1,7 +1,8 @@
-from datetime import datetime
+from datetime import datetime, date
 from sqlmodel import SQLModel, Field, Column
 import uuid
 import sqlalchemy.dialects.postgresql as postgresql
+
 
 class Book(SQLModel, table=True):
 
@@ -12,12 +13,13 @@ class Book(SQLModel, table=True):
             postgresql.UUID(as_uuid=True),
             primary_key=True,
             nullable=False,
-            default=uuid.uuid4
-        ))
+            default=uuid.uuid4,
+        )
+    )
     title: str = Field(nullable=False)
     author: str = Field(nullable=False)
     publisher: str = Field(nullable=False)
-    publish_date: str = Field(nullable=False)
+    publish_date: date = Field(nullable=False)
     pages: int = Field(nullable=False)
     language: str = Field(nullable=False)
     created_at: datetime = Field(

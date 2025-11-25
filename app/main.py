@@ -9,7 +9,6 @@ async def lifespan(app: FastAPI):
     await init_db()
     yield
     print("shutdown actions===================")
-    # Shutdown actions
 
 version = "v1"
 
