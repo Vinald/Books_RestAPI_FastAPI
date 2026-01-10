@@ -24,13 +24,13 @@ class Book(SQLModel, table=True):
     language: str = Field(nullable=False)
     created_at: datetime = Field(
         sa_column=Column(
-            postgresql.TIMESTAMP(),
+            postgresql.TIMESTAMP,
             default=datetime.now,
         )
     )
     updated_at: datetime = Field(
         sa_column=Column(
-            postgresql.TIMESTAMP(),
+            postgresql.TIMESTAMP,
             default=datetime.now,
         )
     )
